@@ -1,0 +1,112 @@
+.hero{
+  background: linear-gradient(90deg,#ff512f,#dd2476);
+  padding:80px 20px;
+  text-align:center;
+  color:white;
+}
+
+.hero h1{
+  font-size:56px;
+  font-weight:800;
+}
+
+.hero span{
+  color:#ffd400;
+}
+
+.hero-badge{
+  background:#ff7a7a;
+  padding:8px 16px;
+  border-radius:20px;
+  display:inline-block;
+  margin-bottom:20px;
+  font-weight:600;
+}
+.product-card{
+ border-radius:16px;
+ overflow:hidden;
+}
+
+.img-wrapper{
+ position:relative;
+}
+
+.img-wrapper img{
+ width:100%;
+ height:220px;
+ object-fit:cover;
+}
+
+.discount{
+ position:absolute;
+ top:10px;
+ left:10px;
+ background:#ff5a00;
+ color:white;
+ padding:4px 10px;
+ border-radius:20px;
+ font-size:12px;
+}
+
+.best{
+ position:absolute;
+ bottom:10px;
+ left:10px;
+ background:#444;
+ color:white;
+ padding:3px 8px;
+ border-radius:10px;
+ font-size:12px;
+}
+
+.price{
+ margin-top:10px;
+}
+
+.new{
+ color:#ff5a00;
+ font-size:22px;
+ font-weight:700;
+}
+
+.old{
+ text-decoration:line-through;
+ margin-left:10px;
+ color:#999;
+}
+
+.save{
+ color:#16a34a;
+ margin-top:5px;
+}
+.detail{
+ display:flex;
+ gap:40px;
+ padding:40px;
+}
+
+.detail img{
+ width:500px;
+ border-radius:20px;
+}
+
+.price-box{
+ font-size:30px;
+}
+
+.price-new{
+ color:#ff5a00;
+ font-weight:700;
+}
+
+.price-old{
+ margin-left:10px;
+ text-decoration:line-through;
+ color:#999;
+}
+
+.buy-btn{
+ margin-top:30px;
+ background:linear-gradient(90deg,#ff5a00,#ff9900);
+ border:none;
+}
