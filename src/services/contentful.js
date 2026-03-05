@@ -27,3 +27,23 @@ export async function getProducts() {
     };
   });
 }
+export async function getProductById(id){
+
+  const res = await client.getEntry(id);
+
+  const imgId = res.fields.img[0].sys.id;
+
+  const asset = await client.getAsset(imgId);
+
+  return{
+    id:res.sys.id,
+    name:res.fields.name,
+    price:res.fields.price,
+    priceDis:res.fields.priceDis,
+    disPercent:res.fields.disPercent,
+    desc:res.fields.desc,
+    link:res.fields.link,
+    img:"https:"+asset.fields.file.url
+  }
+
+}
