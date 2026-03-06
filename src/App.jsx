@@ -1,8 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import ProductDetail from "./pages/productDetail";
 import Login from "./pages/Login";
 import Admin from "./pages/Admin";
+import ProductDetail from "./pages/productdetails";
+
+
+
 
 
 export default function App() {
