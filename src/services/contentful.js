@@ -1,3 +1,5 @@
+    // img: "https:" + asset.fields.file.url
+
 import { createClient } from "contentful";
 
 export const client = createClient({
@@ -5,14 +7,24 @@ export const client = createClient({
   accessToken: "ul2UwpO6jqgC9bLMtdMi8c_cbu8BMqGu3wM7gi7RF78"
 });
 
+
+// Lấy tất cả sản phẩm
 export async function getProducts() {
+
   const res = await client.getEntries({
-    content_type: "affiliate"
+    content_type: "affiliate",
+    include: 2
   });
 
   return res.items.map(item => {
-    const imgId = item.fields.img[0].sys.id;
-    const asset = res.includes.Asset.find(a => a.sys.id === imgId);
+
+    const images = item.fields.img?.map(img => {
+      const asset = res.includes.Asset.find(
+        a => a.sys.id === img.sys.id
+      );
+
+      return asset ? "https:" + asset.fields.file.url : "";
+    }) || [];
 
     return {
       id: item.sys.id,
@@ -23,27 +35,36 @@ export async function getProducts() {
       disPercent: item.fields.disPercent,
       category: item.fields.categogy,
       desc: item.fields.desc,
-      img: "https:" + asset.fields.file.url
+      img: images
     };
+
   });
+
 }
-export async function getProductById(id){
 
-  const res = await client.getEntry(id);
 
-  const imgId = res.fields.img[0].sys.id;
 
-  const asset = await client.getAsset(imgId);
+// Lấy sản phẩm theo id
+export async function getProductById(id) {
 
-  return{
-    id:res.sys.id,
-    name:res.fields.name,
-    price:res.fields.price,
-    priceDis:res.fields.priceDis,
-    disPercent:res.fields.disPercent,
-    desc:res.fields.desc,
-    link:res.fields.link,
-    img:"https:"+asset.fields.file.url
-  }
+  const res = await client.getEntry(id, {
+    include: 2
+  });
+
+  const images = res.fields.img?.map(asset => {
+    return asset?.fields?.file?.url ? "https:" + asset.fields.file.url : null;
+  }).filter(Boolean) || [];
+
+  return {
+    id: res.sys.id,
+    name: res.fields.name,
+    link: res.fields.link,
+    price: res.fields.price,
+    priceDis: res.fields.priceDis,
+    disPercent: res.fields.disPercent,
+    category: res.fields.category,
+    desc: res.fields.desc,
+    img: images
+  };
 
 }
